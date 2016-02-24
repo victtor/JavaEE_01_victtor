@@ -1,0 +1,165 @@
+Java Web - Fundamentos
+Maven -> Repositório Local de jars ( gerencia conjunto de classes compactados), bibliotecas
+GIT -> Repositório de códigos (versionamento)
+TomCat -> Servidor Web
+Postgres -> Gerenciador de banco de dados
+
+-> Depois da instalação do eclipse e maven
+
+No diretório do projeto, $ mvn archetype:generate -DgroupId=software.JavaEE -DartifactId=JavaEE -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+
+*comando para fazer o projeto pertencer a um grupo, o nomear e já seta templetes e frameworks específicos.
+
+Baixa o Tomcat
+
+muda o pom.xml de jar para war (web), especificar <failOnMissingWebXml>
+
+muda a versão no pom.xml para o java atual
+
+vai em servers e adiciona o Tomcat e o projeto feito
+
+inicia o servidor localhost:8080 com o nome do projeto
+
+Versionamento - criar conta no git e github
+
+git init - para iniciar o git na pasta do projeto
+git add - adiciona os arquivos para o controle e versionamento
+git status - para mostrar os arquivos q foram adicionados
+git commit -m "mensagem"- confirma os arquivos adicionados
+git add --all - todos os arquivos criados na pasta é adicionado no git
+git remote add origin https://github.com/victtor/JavaEE_01_victtor.git - vincula o balde gerado com os arquivos ao github
+git push -u origin master - envia o balde local a base web
+
+Eclipse - Plugins -> Egit , Maven
+
+protocolo://ip:porta/recurso
+https://localhost:8080/JavaEE
+https://127.0.0.1:8080/JavaEE
+
+
+Classe ---- Tabela
+Objeto ---- Registro
+
+Classes - Usuario, UsuarioDAO, ConexaoFactory
+
+http://mvnrepository.com/   -> site para drivers postgres
+
+	<dependency>
+	     <groupId>org.postgresql</groupId>
+	     <artifactId>postgresql</artifactId>
+	     <version>9.4.1207</version>
+	</dependency>
+
+
+REALIZAÇÃO DO CRUD EM JAVA
+
+Servlets -> Objetos java que irão fazer a comunicação através da Web  (Para cada request irá ter um servlet para receber)
+
+Http-Request -> Dados da requisição
+
+Http-Response -> Dados da resposta
+
+Tomcat -> Pega o request, localiza o servlet da requisição que pega os dados e transforma para objeto java, instancia novos objetos java e manda para o http response
+
+Criar outra dependência no pom.xml
+
+<dependency>
+	 <groupId>javax.servlet</groupId>
+	 <artifactId>javax.servlet-api</artifactId>
+	 <version>3.0.1</version>
+	</dependency>
+
+criar classe para o servlet e o nomear
+
+Método doGet que contém como parâmetros o http request e o http response para requisição da página web
+
+Quando requisitado o endereço do servlet, o Tomcat o instancia uma vez, poupando objetos
+
+Init é executado logo após o objeto ser construído, sem ter recebido requisição.
+
+http://localhost:8080/javaEE/usucontroller.do?nome=ze&login=zeze&senha=123
+
+Pelo get é possível pegar os parâmetros mandados pela url com o http request e com o servlet é possível inserir no banco em java com variáveis do objeto usuário
+
+Pelo post é possível pegar os valores seguindo o padrão chave e valor e com o http request e com o servlet é possível inserir no banco em java com variáveis do objeto usuário.
+
+
+Criação de página html com form básico para enviar as informações.
+
+Usar Postman - Google Chrome Extension para enviar informações via GET e POST
+
+Criar no método doGet para exclusão e busca pela url com id e acao
+
+Ao receber os dados da acao em uma lista, enviar os dados para um arquivo JSP para o tratamento dos dados
+e envio (response) de HTML ao usuario (Format)
+
+Servlet ->  Request(dados do cliente) e Response(retorno ao cliente),  os dois irão para o JSP.
+
+
+Faz a requisição pelo servlet, o arquivo JSP é um arquivo capaz de processar um HTML dinâmico, que irá
+ter html e java e o resultado será um html puro que será o response do http.
+
+Depois de ter uma lista com os dados da consulta, irá adicioná-la no request 	
+
+Diretiva JSP para informar o tipo de linguagem da página, o que ela irá gerar e a codificação
+  <%@ page language="java" contentType="text/html; charset=UTF-8"
+
+Scriptlet -> Delimitador JSP para linguagem java, dentro pode-se escrever java
+  <% %>
+
+Dentro do JSP já tem os métodos request e reponse para serem importados do servlet
+
+Criar pasta WEB-INF para os jsps n poderem ser acessados.
+
+Javascript para mandar o id 
+
+sendRedirect -> Acontece no browser
+foward -> Acontece no servidor
+
+dev f1, coding
+
+CRUD feito !!!
+
+## Autenticação ##
+Login -> Público
+Telas -> Privado
+Sessão -> Para guardar os dados do usuário. Área que todos os servlets tem acesso.
+Filter -> Objeto criado pra filtrar as requisições, se tiver na sessão vai pras telas, se
+n, vai para o login
+Session Scope -> Armazena todos os https sessions
+HTTP Session -> Irá armazenar um id de sessão representando o usuário
+
+Classe para autenticar
+
+req.getSession();
+
+LogOut com método get para
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
